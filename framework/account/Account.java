@@ -2,8 +2,7 @@ package framework.account;
 
 import framework.account.entry.Entry;
 import framework.account.entry.IEntry;
-import framework.party.AbstractCustomer;
-import framework.party.ICompany;
+import framework.party.Customer;
 import framework.rules.NotifyRule;
 
 import java.time.LocalDate;
@@ -11,77 +10,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account implements IAccount {
-	
-	private String accountNumber;
+	private int accNumber;
 	private List<IEntry> entries;
-	private double interestRate = 0.05;
-	protected AbstractCustomer party;
+	private double interest = 0.05;
+	protected Customer party;
 
-	public Account(AbstractCustomer party, String accountNumber) {
-		this.accountNumber = accountNumber;
+	public Account(Customer party, int accNumber) {
+		this.accNumber = accNumber;
 		this.party = party;
-		
-		entries = new ArrayList<>();
-	}
-	
-    public double getBalance() {
-        return entries.stream().mapToDouble(e->e.getAmount()).sum();
-    }
-
-    public double getInterestRate() {
-		return this.interestRate;
+		this.entries = new ArrayList<>();
 	}
 
-    public List<IEntry> getEntries(){
-    	return entries;
+	@Override
+    public double getCurrentBalance() {
+		return entries.stream().mapToDouble(e -> e.amount()).sum();
     }
 
-    public void depositMoney(double money) {
-    	entries.add(new Entry(money, LocalDate.now(), "Deposit Money"));
-
-    	sendNotification();
-    }
-
-	public void withdrawMoney(double money) {
-		entries.add(new Entry(-money, LocalDate.now(), "Withdraw Money"));
-
-		sendNotification();
+	@Override
+	public void addEntry(IEntry entry) {
+		entries.add(entry);
+		notifyCustomer();
 	}
 
-	public void sendNotification() {
-		if(new NotifyRule().chech(this)) party.notifyOwner();
+	public void notifyCustomer() {
+		if (new NotifyRule().chech(this)) {
+			party.SendEmailToCustomer();
+		}
 	}
 
-    public ICompany getOwner() {
-        return party;
-    }
-    
-    public void report() {
-    	System.out.println(entries);
-    }
-    
-    public void addInterest() {
-    	double rate = getBalance() * getInterestRate();
-    	if (rate > 0) this.getEntries().add(new Entry(rate, LocalDate.now(), "Interest Added"));
-    }
+	@Override
+	public void addInterest() {
+		double rate = getCurrentBalance() * this.interest;
+		if (rate > 0) {
+			this.entries.add(new Entry(rate, LocalDate.now(), "Interest Added"));
+		}
+	}
+
+	@Override
+	public int getAccNumber() {
+		return this.accNumber;
+	}
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        }
-        if (!(o instanceof Account)) {
+    public boolean equals(Object object) {
+        if (!(object instanceof Account)) {
             return false;
         }
-        Account account = (Account) o;
-        return this.accountNumber.equals(account.getAccountNumber());
-	}
 
-	public String getAccountNumber() {
-		return accountNumber;
-	}
-
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
+        Account account = (Account) object;
+        return this.accNumber == account.getAccNumber();
 	}
 }

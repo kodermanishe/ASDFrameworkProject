@@ -8,37 +8,28 @@ public class Entry implements IEntry {
 	private LocalDate date;
 	
 	public Entry(double amount, LocalDate date, String name) {
-		this.setName(name);
-		this.setAmount(amount);
-		this.setDate(date);
-	}
-
-	public double getAmount() {
-		return amount;
-	}
-	
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
 		this.name = name;
+		this.amount = amount;
+		this.date = date;
 	}
 
-	public LocalDate getDate() {
+	@Override
+	public String toString() {
+		return name() + " " + date() + " " + amount();
+	}
+
+	@Override
+	public LocalDate date() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-	
 	@Override
-	public String toString() {
-		return getName() + " " + getDate() + " " + getAmount();
+	public String name() {
+		return name;
+	}
+
+	@Override
+	public double amount() {
+		return amount;
 	}
 }
