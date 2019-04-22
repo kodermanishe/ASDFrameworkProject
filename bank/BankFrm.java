@@ -14,7 +14,7 @@ public class BankFrm extends javax.swing.JFrame
     /****
      * init variables in the object
      ****/
-    //test   gfgfg
+    //test   gfgfg  fg
     java.lang.String accountnr;
 	java.lang.String clientName;
 	java.lang.String street;
