@@ -5,64 +5,65 @@ import framework.account.IAccount;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractCustomer implements ICompany {
+public abstract class AbstractCustomer implements Customer {
 
-    private String name;
-    private String street;
-    private String city;
-    private String state;
-    private int zip;
-    private String email;
+    protected String name;
+    protected String street;
+    protected String city;
+    protected String state;
+    protected String zip;
+    protected String email;
 
     private List<IAccount> accounts = new ArrayList<>();
 
-    protected AbstractCustomer(String name, String street, String city, String state, int zip, String email) {
-        this.name = name;
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.email = email;
+    @Override
+    public int getCountEmp() {
+        return accounts.size();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public int getZip() {
-        return zip;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
+    @Override
     public void addAccount(IAccount account) {
         accounts.add(account);
     }
 
+    @Override
     public void removeAccount(IAccount account) {
         accounts.remove(account);
     }
 
-    public void notifyOwner() {
-        System.err.println("Message sent to the owner: " + name);
+    @Override
+    public String getName() {
+        return name;
     }
-    
-    public List<IAccount> getAccounts(){
-    	return accounts;
+
+    @Override
+    public String getStreet() {
+        return street;
+    }
+
+    @Override
+    public String getCity() {
+        return city;
+    }
+
+    @Override
+    public String getState() {
+        return state;
+    }
+
+    @Override
+    public String getZip() {
+        return zip;
+    }
+
+    @Override
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public void SendEmailToCustomer() {
+        System.out.println("Sending message to customer: " + name);
     }
 
     @Override

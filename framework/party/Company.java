@@ -7,21 +7,20 @@ public class Company extends AbstractCustomer implements Customer {
 
     private List<IPerson> employees;
 
-    public Company(String name, String street, String city, String state, int zip, String email) {
-        super(name, street, city, state, zip, email);
+    public Company(String name, String street, String city, String state, String zip, String email) {
+        this.name = name;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.email = email;;
         
         employees = new ArrayList<>();
     }
 
-    public void hirePerson(IPerson person) {
-        employees.add(person);
-    }
 
-    public void firePerson(IPerson person) {
-        employees.remove(person);
-    }
-
-    public int employeesNumber() {
+    @Override
+    public int getCountEmp() {
         return employees.size();
     }
 }

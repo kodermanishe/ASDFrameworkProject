@@ -4,12 +4,22 @@ import java.time.LocalDate;
 
 public class Person extends AbstractCustomer implements IPerson {
 
-    public Person(String name, String street, String city, String state, int zip, String email, LocalDate birthDay) {
-        super(name, street, city, state, zip, email);
-        this.birthDay = birthDay;
-    }
-
     private LocalDate birthDay;
     private Company company;
 
+    public Person(String name, String street, String city, String state, String zip, String email, LocalDate birthDay) {
+        this.name = name;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.email = email;
+        this.birthDay = birthDay;
+
+    }
+
+    @Override
+    public LocalDate getBirthday() {
+        return birthDay;
+    }
 }
