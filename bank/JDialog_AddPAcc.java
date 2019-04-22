@@ -1,6 +1,7 @@
 /**
 		A basic implementation of the JDialog class.
 **/
+package bank;
 
 import java.awt.*;
 import javax.swing.*;

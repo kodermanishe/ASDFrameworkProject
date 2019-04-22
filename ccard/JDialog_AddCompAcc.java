@@ -1,3 +1,5 @@
+package ccard;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -5,9 +7,9 @@ import javax.swing.*;
 
 public class JDialog_AddCompAcc extends javax.swing.JDialog
 {
-    private BankFrm parentframe;
+    private CardFrm parentframe;
     
-	public JDialog_AddCompAcc(BankFrm parent)
+	public JDialog_AddCompAcc(CardFrm parent)
 	{
 		super(parent);
 		parentframe=parent;

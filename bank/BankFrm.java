@@ -1,6 +1,4 @@
-package project.bank;
-
-import com.sun.org.apache.xpath.internal.operations.String;
+package bank;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,14 +14,22 @@ public class BankFrm extends javax.swing.JFrame
     /****
      * init variables in the object
      ****/
-    String accountnr, clientName,street,city,zip,state,accountType,clientType,amountDeposit;
+    java.lang.String accountnr;
+	java.lang.String clientName;
+	java.lang.String street;
+	java.lang.String city;
+	java.lang.String zip;
+	java.lang.String state;
+	java.lang.String accountType;
+	String clientType;
+	java.lang.String amountDeposit;
     boolean newaccount;
     private DefaultTableModel model;
     private JTable JTable1;
     private JScrollPane JScrollPane1;
     BankFrm myframe;
     private Object rowdata[];
-    
+
 	public BankFrm()
 	{
 		myframe = this;
@@ -97,7 +103,7 @@ public class BankFrm extends javax.swing.JFrame
 		
 	}
 
-	
+
 	/*****************************************************
 	 * The entry point for this application.
 	 * Sets the Look and Feel to the System Look and Feel.
@@ -106,18 +112,18 @@ public class BankFrm extends javax.swing.JFrame
 	static public void main(String args[])
 	{
 		try {
-		    // Add the following code if you want the Look and Feel
-		    // to be set to the Look and Feel of the native system.
-		    
-		    try {
-		        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		    } 
-		    catch (Exception e) { 
-		    }
-		    
+			// Add the following code if you want the Look and Feel
+			// to be set to the Look and Feel of the native system.
+
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			}
+			catch (Exception e) {
+			}
+
 			//Create a new instance of our application's frame, and make it visible.
 			(new BankFrm()).setVisible(true);
-		} 
+		}
 		catch (Throwable t) {
 			t.printStackTrace();
 			//Ensure the application exits with an error condition.
@@ -260,16 +266,16 @@ public class BankFrm extends javax.swing.JFrame
             String accnr = (String)model.getValueAt(selection, 0);
     	    
 		    //Show the dialog for adding deposit amount for the current mane
-		    JDialog_Deposit dep = new JDialog_Deposit(myframe,accnr);
+		    JDialog_Deposit dep = new JDialog_Deposit(myframe,accnr.toString());
 		    dep.setBounds(430, 15, 275, 140);
 		    dep.show();
     		
 		    // compute new amount
             long deposit = Long.parseLong(amountDeposit);
             String samount = (String)model.getValueAt(selection, 5);
-            long currentamount = Long.parseLong(samount);
+            long currentamount = Long.parseLong(samount.toString());
 		    long newamount=currentamount+deposit;
-		    model.setValueAt(String.valueOf(newamount),selection, 5);
+		    model.setValueAt(newamount,selection, 5);
 
 		}
 		
@@ -284,18 +290,18 @@ public class BankFrm extends javax.swing.JFrame
             String accnr = (String)model.getValueAt(selection, 0);
 
 		    //Show the dialog for adding withdraw amount for the current mane
-		    JDialog_Withdraw wd = new JDialog_Withdraw(myframe,accnr);
+		    JDialog_Withdraw wd = new JDialog_Withdraw(myframe,accnr.toString());
 		    wd.setBounds(430, 15, 275, 140);
 		    wd.show();
     		
 		    // compute new amount
             long deposit = Long.parseLong(amountDeposit);
             String samount = (String)model.getValueAt(selection, 5);
-            long currentamount = Long.parseLong(samount);
+            long currentamount = Long.parseLong(samount.toString());
 		    long newamount=currentamount-deposit;
-		    model.setValueAt(String.valueOf(newamount),selection, 5);
+		    model.setValueAt(newamount,selection, 5);
 		    if (newamount <0){
-		       JOptionPane.showMessageDialog(JButton_Withdraw, " Account "+accnr+" : balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
+		       JOptionPane.showMessageDialog(JButton_Withdraw, " Account "+accnr+" : balance is negative: $"+newamount+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
 		    }
 		}
 		
