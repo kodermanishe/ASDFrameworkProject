@@ -33,7 +33,7 @@ public class Account implements IAccount {
 	}
 
 	public void notifyCustomer() {
-		if (new NotifyRule().chech(this)) {
+		if (new NotifyRule().test(this)) {
 			party.SendEmailToCustomer();
 		}
 	}
