@@ -3,7 +3,7 @@ package framework.ui;
 import framework.AccountFactory;
 import framework.PartyFactory;
 import framework.account.Account;
-import framework.party.Custormer;
+import framework.party.AbstractCustomer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -129,9 +129,9 @@ public class JDialog_AddCompAcc extends JDialog
 		int zip = Integer.parseInt(JTextField_ZIP.getText());
 		String email = JTextField_EM.getText();
 
-		Custormer newCompany = PartyFactory.createCompany(name, street, city, state, zip, email);
+		AbstractCustomer newCompany = PartyFactory.createCompany(name, street, city, state, zip, email);
 
-		List<Custormer> parties = main.finCo.getParties();
+		List<AbstractCustomer> parties = main.finCo.getParties();
 		List<Account> accounts = main.finCo.getAccounts();
 
 		if (!parties.contains(newCompany)) {

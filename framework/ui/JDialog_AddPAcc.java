@@ -5,7 +5,7 @@ package framework.ui; /**
 import framework.AccountFactory;
 import framework.PartyFactory;
 import framework.account.Account;
-import framework.party.Custormer;
+import framework.party.AbstractCustomer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -141,9 +141,9 @@ public class JDialog_AddPAcc extends JDialog
 		String email = JTextField_EM.getText();
 		LocalDate birthDay = LocalDate.parse(JTextField_BD.getText(), formatter);
 
-		Custormer newPerson = PartyFactory.createPerson(name, street, city, state, zip, email, birthDay);
+		AbstractCustomer newPerson = PartyFactory.createPerson(name, street, city, state, zip, email, birthDay);
 
-		List<Custormer> parties = main.finCo.getParties();
+		List<AbstractCustomer> parties = main.finCo.getParties();
 		List<Account> accounts = main.finCo.getAccounts();
 
 		if (!parties.contains(newPerson)) {

@@ -2,7 +2,7 @@ package framework.ui;
 
 import framework.FinCo;
 import framework.account.Account;
-import framework.party.Custormer;
+import framework.party.AbstractCustomer;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -233,10 +233,10 @@ public class MainScreen extends JFrame{
         for (Account account : finCo.getAccounts()) {
             rowdata = new Object[model.getColumnCount()];
             rowdata[0] = account.getAccountNumber();
-            rowdata[1] = ((Custormer)account.getOwner()).getName();
-            rowdata[2] = ((Custormer)account.getOwner()).getCity();
-            rowdata[3] = ((Custormer)account.getOwner()).getState();
-            rowdata[4] = ((Custormer)account.getOwner()).getClass().getSimpleName();
+            rowdata[1] = ((AbstractCustomer)account.getOwner()).getName();
+            rowdata[2] = ((AbstractCustomer)account.getOwner()).getCity();
+            rowdata[3] = ((AbstractCustomer)account.getOwner()).getState();
+            rowdata[4] = ((AbstractCustomer)account.getOwner()).getClass().getSimpleName();
             rowdata[5] = account.getBalance();
             model.addRow(rowdata);
         }
