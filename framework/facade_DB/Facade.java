@@ -13,10 +13,9 @@ import java.util.Objects;
 
 public class Facade {
 
-    private FincoDB DB;
-
+    protected FincoDB DB;
     public Facade() {
-        DB = new FincoDB();
+        DB = FincoDB.getInstance();
     }
 
     public Customer createCustomer(String name, String street, String city, String state, int zip, String email){

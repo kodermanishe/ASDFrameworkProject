@@ -4,7 +4,7 @@ import framework.party.Customer;
 
 public class AccountFactory implements IAccountFactory {
 	
-	protected AccountFactory() {}
+	private AccountFactory() {}
 	private static AccountFactory accountFactory = null;
 	
 	public static AccountFactory getInstance() {

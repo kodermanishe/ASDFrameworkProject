@@ -10,10 +10,20 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FincoDB {
-    List<Customer> customers;
 
-    public FincoDB() {
+    List<Customer> customers;
+    private static FincoDB instance;
+
+    private FincoDB() {
         customers = new ArrayList<>();
+    }
+
+    public static FincoDB getInstance() {
+        if(instance == null) {
+            instance = new FincoDB();
+        }
+
+        return instance;
     }
 
     public void updateInterest(){

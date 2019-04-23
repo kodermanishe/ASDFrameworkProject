@@ -15,6 +15,9 @@ public class Account implements IAccount {
 	private double interest = 0.05;
 	protected Customer customer;
 
+	public Account() {
+	}
+
 	public Account(Customer party, String accNumber) {
 		this.accNumber = accNumber;
 		this.customer = party;

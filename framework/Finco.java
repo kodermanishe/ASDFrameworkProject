@@ -9,8 +9,8 @@ public class Finco extends JFrame {
     protected JFrame main;
 
     public static void main(String[] args) { 
-    	Finco finCo = new Finco();
-    	finCo.run();
+    	Finco finco = new Finco();
+        finco.run();
     }
     
     public void run() {
