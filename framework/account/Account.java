@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account implements IAccount {
-	private int accNumber;
+	private String accNumber;
 	private List<IEntry> entries;
 	private double interest = 0.05;
-	protected Customer party;
+	protected Customer customer;
 
-	public Account(Customer party, int accNumber) {
+	public Account(Customer party, String accNumber) {
 		this.accNumber = accNumber;
-		this.party = party;
+		this.customer = party;
 		this.entries = new ArrayList<>();
 	}
 
@@ -34,8 +34,13 @@ public class Account implements IAccount {
 
 	public void notifyCustomer() {
 		if (new NotifyRule().test(this)) {
-			party.SendEmailToCustomer();
+			customer.SendEmailToCustomer();
 		}
+	}
+
+	@Override
+	public Customer getCustomer() {
+		return customer;
 	}
 
 	@Override
@@ -47,7 +52,7 @@ public class Account implements IAccount {
 	}
 
 	@Override
-	public int getAccNumber() {
+	public String getAccNumber() {
 		return this.accNumber;
 	}
 

@@ -2,6 +2,8 @@ package framework.party;
 
 import framework.account.IAccount;
 
+import java.util.List;
+
 public interface Customer {
 	public int getCountEmp();
 	void SendEmailToCustomer();
@@ -11,6 +13,8 @@ public interface Customer {
 	String getStreet();
 	String getCity();
 	String getState();
-	String getZip();
+	int getZip();
 	String getEmail();
+	CustomerType getType();
+	List<IAccount> getAccounts();
 }

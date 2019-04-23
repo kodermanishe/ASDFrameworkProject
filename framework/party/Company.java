@@ -7,7 +7,7 @@ public class Company extends AbstractCustomer implements Customer {
 
     private List<IPerson> employees;
 
-    public Company(String name, String street, String city, String state, String zip, String email) {
+    public Company(String name, String street, String city, String state, int zip, String email) {
         this.name = name;
         this.street = street;
         this.city = city;
@@ -22,5 +22,10 @@ public class Company extends AbstractCustomer implements Customer {
     @Override
     public int getCountEmp() {
         return employees.size();
+    }
+
+    @Override
+    public CustomerType getType() {
+        return CustomerType.COMPANY;
     }
 }

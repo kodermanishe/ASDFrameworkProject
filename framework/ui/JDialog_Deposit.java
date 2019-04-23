@@ -1,6 +1,7 @@
 package framework.ui;
 
-import framework.account.Account;
+import framework.facade_DB.Facade;
+import framework.account.IAccount;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,13 +9,13 @@ import java.awt.*;
 public class JDialog_Deposit extends JDialog
 {
 
-    private MainScreen main;
-    private Account account;
+    private Facade facade;
+    private IAccount account;
     
-	public JDialog_Deposit(MainScreen main, Account account)
+	public JDialog_Deposit(MainScreen main, IAccount account, Facade facade)
 	{
 		super(main);
-		this.main = main;
+		this.facade = facade;
 		this.account = account;
 
 		//{{ INIT_CONTROLS 
@@ -45,7 +46,7 @@ public class JDialog_Deposit extends JDialog
 		getContentPane().add(JTextField_Deposit);
 		JTextField_Deposit.setBounds(84,48,144,24);
 		//}}
-	    JTextField_NAME.setText(account.getAccountNumber());
+	    JTextField_NAME.setText(account.getAccNumber());
 	    
 		//{{REGISTER_LISTENERS
 		SymAction lSymAction = new SymAction();
@@ -81,7 +82,7 @@ public class JDialog_Deposit extends JDialog
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		double money = Double.parseDouble(JTextField_Deposit.getText());
-        account.depositMoney(money);
+        facade.deposit(account, money);
         dispose();
 	}
 

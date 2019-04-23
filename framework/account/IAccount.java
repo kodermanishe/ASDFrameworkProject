@@ -1,6 +1,7 @@
 package framework.account;
 
 import framework.account.entry.IEntry;
+import framework.party.Customer;
 import framework.party.ICompany;
 
 import java.util.List;
@@ -10,5 +11,6 @@ public interface IAccount {
 	void addEntry(IEntry entry);
 	void notifyCustomer();
 	void addInterest();
-	int getAccNumber();
+	String getAccNumber();
+	Customer getCustomer();
 }

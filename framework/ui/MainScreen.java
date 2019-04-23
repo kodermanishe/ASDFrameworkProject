@@ -1,8 +1,9 @@
 package framework.ui;
 
-import framework.FinCo;
-import framework.account.Account;
-import framework.party.AbstractCustomer;
+import framework.facade_DB.Facade;
+import framework.Finco;
+import framework.account.IAccount;
+import framework.party.Customer;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -24,12 +25,13 @@ public class MainScreen extends JFrame{
     private JScrollPane JScrollPane1;
     private JTable JTable1;
     protected DefaultTableModel model;
-    public FinCo finCo;
+    public Finco finCo;
     private Object rowdata[];
     public boolean newAccount;
+    private Facade facade = new Facade();
 
     public MainScreen(){}
-	public MainScreen(FinCo finCo) {
+	public MainScreen(Finco finCo) {
 		myframe = this;
 		this.finCo = finCo;
 		setTitle(getTitle());
@@ -170,7 +172,7 @@ public class MainScreen extends JFrame{
 
     protected void JButtonPerAC_actionPerformed(ActionEvent event)
     {
-        JDialog_AddPAcc pac = new JDialog_AddPAcc(myframe);
+        JDialog_AddPAcc pac = new JDialog_AddPAcc(this, facade);
         pac.setBounds(450, 20, 300, 330);
         pac.setVisible(true);
 
@@ -179,7 +181,7 @@ public class MainScreen extends JFrame{
 
     protected void JButtonCompAC_actionPerformed(ActionEvent event)
     {
-        JDialog_AddCompAcc pac = new JDialog_AddCompAcc(myframe);
+        JDialog_AddCompAcc pac = new JDialog_AddCompAcc(this, facade);
         pac.setBounds(450, 20, 300, 330);
         pac.setVisible(true);
 
@@ -193,7 +195,7 @@ public class MainScreen extends JFrame{
             String accountNumber = (String) model.getValueAt(selection, 0);
 
             //Show the dialog for adding deposit amount for the current mane
-            JDialog_Deposit dep = new JDialog_Deposit(this, finCo.getAccountByNumber(accountNumber));
+            JDialog_Deposit dep = new JDialog_Deposit(this, facade.getAccount(accountNumber), facade);
             dep.setBounds(430, 15, 275, 140);
             dep.setVisible(true);
 
@@ -209,7 +211,7 @@ public class MainScreen extends JFrame{
         if (selection >=0){
             String accountNumber = (String) model.getValueAt(selection, 0);
 
-            JDialog_Withdraw wd = new JDialog_Withdraw(this, finCo.getAccountByNumber(accountNumber));
+            JDialog_Withdraw wd = new JDialog_Withdraw(this, facade.getAccount(accountNumber), facade);
             wd.setBounds(430, 15, 275, 140);
             wd.setVisible(true);
 
@@ -222,7 +224,7 @@ public class MainScreen extends JFrame{
 
     protected void JButtonAddinterest_actionPerformed(ActionEvent event)
     {
-        finCo.addInterest();
+        facade.addInterest();
         this.updateTable();
         JOptionPane.showMessageDialog(JButton_AddInterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
     }
@@ -230,14 +232,15 @@ public class MainScreen extends JFrame{
     public void updateTable() {
         model.setRowCount(0);
 
-        for (Account account : finCo.getAccounts()) {
+        for (IAccount account : facade.getAccounts()) {
+            Customer customer = account.getCustomer();
             rowdata = new Object[model.getColumnCount()];
-            rowdata[0] = account.getAccountNumber();
-            rowdata[1] = ((AbstractCustomer)account.getOwner()).getName();
-            rowdata[2] = ((AbstractCustomer)account.getOwner()).getCity();
-            rowdata[3] = ((AbstractCustomer)account.getOwner()).getState();
-            rowdata[4] = ((AbstractCustomer)account.getOwner()).getClass().getSimpleName();
-            rowdata[5] = account.getBalance();
+            rowdata[0] = account.getAccNumber();
+            rowdata[1] = customer.getName();
+            rowdata[2] = customer.getCity();
+            rowdata[3] = customer.getState();
+            rowdata[4] = customer.getClass().getSimpleName();
+            rowdata[5] = account.getCurrentBalance();
             model.addRow(rowdata);
         }
     }

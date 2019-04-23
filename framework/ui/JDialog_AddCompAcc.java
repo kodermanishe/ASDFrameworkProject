@@ -1,21 +1,19 @@
 package framework.ui;
 
-import framework.AccountFactory;
-import framework.PartyFactory;
-import framework.account.Account;
-import framework.party.AbstractCustomer;
+import framework.facade_DB.Facade;
+import framework.party.Customer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
-
 
 public class JDialog_AddCompAcc extends JDialog
 {
+    private Facade facade;
     private MainScreen main;
 
-	public JDialog_AddCompAcc(MainScreen main)
+	public JDialog_AddCompAcc(MainScreen main, Facade facade)
 	{
+		this.facade = facade;
 		this.main = main;
 		//{{ INIT_CONTROLS 
 		setTitle("Add compamy account");
@@ -129,27 +127,10 @@ public class JDialog_AddCompAcc extends JDialog
 		int zip = Integer.parseInt(JTextField_ZIP.getText());
 		String email = JTextField_EM.getText();
 
-		AbstractCustomer newCompany = PartyFactory.createCompany(name, street, city, state, zip, email);
-
-		List<AbstractCustomer> parties = main.finCo.getParties();
-		List<Account> accounts = main.finCo.getAccounts();
-
-		if (!parties.contains(newCompany)) {
-			parties.add(newCompany);
-		} else {
-			int index = parties.indexOf(newCompany);
-			newCompany = parties.get(index);
-		}
-
-		Account account = AccountFactory.getInstance().createAccount(newCompany, accountNumber, "");
-		if (!accounts.contains(account)) {
-			newCompany.addAccount(account);
-			accounts.add(account);
-			main.updateTable();
-			dispose();
-		} else {
-			JOptionPane.showMessageDialog(this, "Cannot create account, account number already exists","Error!", JOptionPane.ERROR_MESSAGE);
-		}
+		Customer company = facade.createCustomer(name, street, city, state, zip, email);
+		facade.createAccount(company, accountNumber, "");
+		main.updateTable();
+		dispose();
 
 	}
 

@@ -16,8 +16,8 @@ public class AccountFactory implements IAccountFactory {
 	}
 
 	@Override
-	public IAccount createAccount(Customer customer, int accNumber, String type) {
-		Account account = new Account(customer, accNumber);
+	public IAccount createAccount(Customer customer, String accNumber, String type) {
+		IAccount account = new Account(customer, accNumber);
 		customer.addAccount(account);
 		return account;
 	}

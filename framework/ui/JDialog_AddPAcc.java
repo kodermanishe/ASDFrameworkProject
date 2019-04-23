@@ -2,26 +2,26 @@ package framework.ui; /**
 		A basic implementation of the JDialog class.
 **/
 
-import framework.AccountFactory;
-import framework.PartyFactory;
-import framework.account.Account;
-import framework.party.AbstractCustomer;
+
+import framework.facade_DB.Facade;
+import framework.party.Customer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 public class JDialog_AddPAcc extends JDialog
 {
+    private Facade facade;
     private MainScreen main;
-    
-	public JDialog_AddPAcc(MainScreen main)
+
+	public JDialog_AddPAcc(MainScreen main,Facade facade)
 	{
+		this.facade = facade;
 		this.main = main;
 
-		//{{ INIT_CONTROLS 
+				//{{ INIT_CONTROLS
 		setTitle("Add personal account");
 		setModal(true);
 		getContentPane().setLayout(null);
@@ -141,27 +141,10 @@ public class JDialog_AddPAcc extends JDialog
 		String email = JTextField_EM.getText();
 		LocalDate birthDay = LocalDate.parse(JTextField_BD.getText(), formatter);
 
-		AbstractCustomer newPerson = PartyFactory.createPerson(name, street, city, state, zip, email, birthDay);
-
-		List<AbstractCustomer> parties = main.finCo.getParties();
-		List<Account> accounts = main.finCo.getAccounts();
-
-		if (!parties.contains(newPerson)) {
-			parties.add(newPerson);
-		} else {
-			int index = parties.indexOf(newPerson);
-            newPerson = parties.get(index);
-		}
-
-		Account account = AccountFactory.getInstance().createAccount(newPerson, accountNumber, "");
-        if (!accounts.contains(account)) {
-            newPerson.addAccount(account);
-            accounts.add(account);
-            main.updateTable();
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Cannot create account, account number already exists","Error!", JOptionPane.ERROR_MESSAGE);
-        }
+		Customer person = facade.createPerson(name, street, city, state, zip, email, birthDay);
+		facade.createAccount(person, accountNumber, "");
+		main.updateTable();
+		dispose();
 
 	}
 

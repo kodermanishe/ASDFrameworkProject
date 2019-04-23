@@ -11,7 +11,7 @@ public abstract class AbstractCustomer implements Customer {
     protected String street;
     protected String city;
     protected String state;
-    protected String zip;
+    protected int zip;
     protected String email;
 
     private List<IAccount> accounts = new ArrayList<>();
@@ -52,7 +52,7 @@ public abstract class AbstractCustomer implements Customer {
     }
 
     @Override
-    public String getZip() {
+    public int getZip() {
         return zip;
     }
 
@@ -64,6 +64,11 @@ public abstract class AbstractCustomer implements Customer {
     @Override
     public void SendEmailToCustomer() {
         System.out.println("Sending message to customer: " + name);
+    }
+
+    @Override
+    public List<IAccount> getAccounts() {
+        return accounts;
     }
 
     @Override
