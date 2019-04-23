@@ -53,6 +53,11 @@ public class Account implements IAccount {
 	}
 
 	@Override
+	public List<IEntry> getEntries() {
+		return this.entries;
+	}
+
+	@Override
 	public void addInterest() {
 		double rate = getCurrentBalance() * this.interest;
 		if (rate > 0) {

@@ -14,4 +14,5 @@ public interface IAccount {
 	String getAccNumber();
 	Customer getCustomer();
 	double getLastAmountTransaction();
+	List<IEntry> getEntries();
 }
