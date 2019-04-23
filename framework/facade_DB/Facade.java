@@ -18,7 +18,10 @@ public class Facade {
         DB = FincoDB.getInstance();
     }
 
-    public Customer createCustomer(String name, String street, String city, String state, int zip, String email){
+    public Customer createCustomer(String name, String street, String city, String state, int zip, String email, String n){
+        IAccount account = DB.getAccount(n);
+        if(Objects.nonNull(account))
+            return null;
         Customer company = DB.getCustomer(CustomerType.COMPANY, name);
         if (Objects.isNull(company)) {
             company = CustomerFactory.getInstance().createCompany(name, street, city, state, zip, email);
@@ -27,7 +30,10 @@ public class Facade {
         return company;
     }
 
-    public Customer createPerson(String name, String street, String city, String state, int zip, String email, LocalDate birthDate){
+    public Customer createPerson(String name, String street, String city, String state, int zip, String email, LocalDate birthDate, String n){
+        IAccount account = DB.getAccount(n);
+        if(Objects.nonNull(account))
+            return null;
         Customer person = DB.getCustomer(CustomerType.PERSON, name);
         if (Objects.isNull(person)) {
             person = CustomerFactory.getInstance().createPerson(name, street, city, state, zip, email, birthDate);

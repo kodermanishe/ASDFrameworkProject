@@ -6,8 +6,10 @@ package bank.ui;
 import bank.facade_DB.BankFacade;
 import framework.party.Customer;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class JDialog_AddPAcc extends javax.swing.JDialog
 {
@@ -188,10 +190,14 @@ public class JDialog_AddPAcc extends javax.swing.JDialog
 		String email = JTextField_EM.getText();
 		LocalDate birthDay = LocalDate.parse(JTextField_BD.getText(), formatter);
 
-		Customer person = facade.createPerson(name, street, city, state, zip, email, birthDay);
-		facade.createAccount(person, accountNumber,
-				JRadioButton_Chk.isSelected()?"checkings" : "savings");
-		parentframe.updateTable();
+		Customer person = facade.createPerson(name, street, city, state, zip, email, birthDay, accountNumber);
+		if (Objects.isNull(person)){
+			JOptionPane.showMessageDialog(this, "Cannot create account, account number is exists","Error!", JOptionPane.ERROR_MESSAGE);
+		}else{
+			facade.createAccount(person, accountNumber,
+					JRadioButton_Chk.isSelected()?"checkings" : "savings");
+			parentframe.updateTable();
+		}
 		dispose();
 	}
 

@@ -14,6 +14,7 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 public class JDialog_AddPAcc extends JDialog
 {
@@ -145,9 +146,13 @@ public class JDialog_AddPAcc extends JDialog
 		String email = JTextField_EM.getText();
 		LocalDate birthDay = LocalDate.parse(JTextField_BD.getText(), formatter);
 
-		Customer company = facade.createPerson(name, street, city, state, zip, email, birthDay);
-		facade.createAccount(company, accountNumber, "");
-		main.updateTable();
+		Customer company = facade.createPerson(name, street, city, state, zip, email, birthDay, accountNumber);
+		if (Objects.isNull(company)){
+			JOptionPane.showMessageDialog(this, "Cannot create account, account number is exists","Error!", JOptionPane.ERROR_MESSAGE);
+		}else{
+			facade.createAccount(company, accountNumber, "");
+			main.updateTable();
+		}
 		dispose();
 
 	}

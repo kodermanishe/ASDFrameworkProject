@@ -5,6 +5,7 @@ import framework.party.Customer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class JDialog_AddCompAcc extends JDialog
 {
@@ -127,9 +128,13 @@ public class JDialog_AddCompAcc extends JDialog
 		int zip = Integer.parseInt(JTextField_ZIP.getText());
 		String email = JTextField_EM.getText();
 
-		Customer company = facade.createCustomer(name, street, city, state, zip, email);
-		facade.createAccount(company, accountNumber, "");
-		main.updateTable();
+		Customer company = facade.createCustomer(name, street, city, state, zip, email, accountNumber);
+		if (Objects.isNull(company)){
+			JOptionPane.showMessageDialog(this, "Cannot create account, account number is exists","Error!", JOptionPane.ERROR_MESSAGE);
+		}
+		else{
+			facade.createAccount(company, accountNumber, "");
+			main.updateTable();}
 		dispose();
 
 	}

@@ -3,6 +3,9 @@ package bank.ui;
 import bank.facade_DB.BankFacade;
 import framework.party.Customer;
 
+import javax.swing.*;
+import java.util.Objects;
+
 public class JDialog_AddCompAcc extends javax.swing.JDialog
 {
     private BankFrm parentframe;
@@ -145,12 +148,15 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
 		int zip = Integer.parseInt(JTextField_ZIP.getText());
 		String email = JTextField_EM.getText();
 
-		Customer company = facade.createCustomer(name, street, city, state, zip, email);
-		facade.createAccount(company, accountNumber,
-				JRadioButton_Chk.isSelected()?"checkings" : "savings");
-		parentframe.updateTable();
+		Customer company = facade.createCustomer(name, street, city, state, zip, email, accountNumber);
+		if (Objects.isNull(company)){
+			JOptionPane.showMessageDialog(this, "Cannot create account, account number is exists","Error!", JOptionPane.ERROR_MESSAGE);
+		}else{
+			facade.createAccount(company, accountNumber,
+					JRadioButton_Chk.isSelected()?"checkings" : "savings");
+			parentframe.updateTable();
+		}
 		dispose();
-			 
 	}
 
 	void JButtonCalcel_actionPerformed(java.awt.event.ActionEvent event)
