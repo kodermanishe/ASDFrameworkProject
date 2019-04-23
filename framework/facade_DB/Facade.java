@@ -66,6 +66,10 @@ public class Facade {
         return "";
     }
 
+    public List<Customer> getCustomers(){
+        return DB.getCustomers();
+    }
+
     public List<IAccount> getAccounts(){
         return DB.getAccounts();
     }

@@ -50,6 +50,10 @@ public class FincoDB {
         return null;
     }
 
+    public List<Customer> getCustomers(){
+        return customers;
+    }
+
     public void getReport(){}
 
     public List<IAccount> getAccounts(){
