@@ -14,7 +14,7 @@ public class CreditCardFacade extends Facade {
     public IAccount createAccount(Customer customer, String number, String type){
         IAccount account = DB.getAccount(customer, number);
         if (Objects.isNull(account)){
-            account = CreditCardAccountFactory.getInstance().createAccount(customer, number, type);
+            account = CreditCardAccountFactory.createAccount(customer, number, type);
         }
         return account;
     }
@@ -22,7 +22,7 @@ public class CreditCardFacade extends Facade {
     public IAccount createAccount(Customer customer, String number,  String date, String type){
         IAccount account = DB.getAccount(customer, number);
         if (Objects.isNull(account)){
-            account = CreditCardAccountFactory.getInstance().createAccount(customer, number,date, type);
+            account = CreditCardAccountFactory.createAccount(customer, number,date, type);
         }
         return account;
     }

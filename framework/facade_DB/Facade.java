@@ -24,7 +24,7 @@ public class Facade {
             return null;
         Customer company = DB.getCustomer(CustomerType.COMPANY, name);
         if (Objects.isNull(company)) {
-            company = CustomerFactory.getInstance().createCompany(name, street, city, state, zip, email);
+            company = CustomerFactory.createCompany(name, street, city, state, zip, email);
             DB.addCustomer(company);
         }
         return company;
@@ -36,7 +36,7 @@ public class Facade {
             return null;
         Customer person = DB.getCustomer(CustomerType.PERSON, name);
         if (Objects.isNull(person)) {
-            person = CustomerFactory.getInstance().createPerson(name, street, city, state, zip, email, birthDate);
+            person = CustomerFactory.createPerson(name, street, city, state, zip, email, birthDate);
             DB.addCustomer(person);
         }
         return person;
@@ -45,7 +45,7 @@ public class Facade {
     public IAccount createAccount(Customer customer, String number, String type){
         IAccount account = DB.getAccount(customer, number);
         if (Objects.isNull(account)){
-            account = AccountFactory.getInstance().createAccount(customer, number, type);
+            account = AccountFactory.createAccount(customer, number, type);
         }
         return account;
     }

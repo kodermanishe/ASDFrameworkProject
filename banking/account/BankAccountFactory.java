@@ -1,23 +1,25 @@
 package banking.account;
 
+import framework.account.AccountFactory;
 import framework.account.IAccount;
-import framework.account.IAccountFactory;
 import framework.party.Customer;
 
-public class BankAccountFactory implements IAccountFactory {
-    private BankAccountFactory() {}
-    private static BankAccountFactory accountFactory = null;
-
-    public static BankAccountFactory getInstance() {
-        if(accountFactory == null) {
-            accountFactory = new BankAccountFactory();
-        }
-
-        return accountFactory;
+public abstract class BankAccountFactory  extends AccountFactory {
+    public BankAccountFactory() throws Exception {
+        super();
     }
 
-    @Override
-    public IAccount createAccount(Customer customer, String accNumber, String type) {
+    //private static BankAccountFactory accountFactory = null;
+
+    //public static BankAccountFactory getInstance() {
+        //if(accountFactory == null) {
+            //accountFactory = new BankAccountFactory();
+        //}
+
+        //return accountFactory;
+    //}
+
+    public static IAccount createAccount(Customer customer, String accNumber, String type) {
         IAccount account = null;
         if (type.equals("checkings"))
             account = new Checkings(customer, accNumber);

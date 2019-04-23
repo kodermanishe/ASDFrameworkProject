@@ -3,7 +3,7 @@ package framework.party;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Company extends AbstractCustomer implements Customer {
+public class Company extends AbstractCustomer implements ICompany {
 
     private List<IPerson> employees;
 

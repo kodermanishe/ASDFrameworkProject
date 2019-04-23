@@ -17,11 +17,6 @@ public abstract class AbstractCustomer implements Customer {
     private List<IAccount> accounts = new ArrayList<>();
 
     @Override
-    public int getCountEmp() {
-        return accounts.size();
-    }
-
-    @Override
     public void addAccount(IAccount account) {
         accounts.add(account);
     }

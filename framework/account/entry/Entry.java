@@ -15,21 +15,21 @@ public class Entry implements IEntry {
 
 	@Override
 	public String toString() {
-		return name() + " " + date() + " " + amount();
+		return getName() + " " + getDate() + " " + getAmount();
 	}
 
 	@Override
-	public LocalDate date() {
+	public LocalDate getDate() {
 		return date;
 	}
 
 	@Override
-	public String name() {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public double amount() {
+	public double getAmount() {
 		return amount;
 	}
 }

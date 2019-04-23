@@ -51,6 +51,7 @@ public class CardFrm extends javax.swing.JFrame
 		model.addColumn("Name");
 		model.addColumn("CC number");
 		model.addColumn("Exp date");
+		model.addColumn("Cc Type");
 		model.addColumn("Type");
 		model.addColumn("Balance");
 
@@ -174,8 +175,9 @@ public class CardFrm extends javax.swing.JFrame
 			rowdata[0] = customer.getName();
 			rowdata[1] = account.getAccNumber();
 			rowdata[2] = ((AbstractAccount)account).getExpDate();
-			rowdata[3] = customer.getType();
-			rowdata[4] = account.getCurrentBalance();
+			rowdata[3] = account.getType();
+			rowdata[4] = customer.getType();
+			rowdata[5] = account.getCurrentBalance();
 			model.addRow(rowdata);
 		}
 	}

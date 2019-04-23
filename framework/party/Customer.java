@@ -5,7 +5,6 @@ import framework.account.IAccount;
 import java.util.List;
 
 public interface Customer {
-	public int getCountEmp();
 	void SendEmailToCustomer();
 	void addAccount(IAccount account);
 	void removeAccount(IAccount account);

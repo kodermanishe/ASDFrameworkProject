@@ -1,25 +1,26 @@
 package creditcard.account;
 
-import framework.account.Account;
+import framework.account.AccountFactory;
 import framework.account.IAccount;
-import framework.account.IAccountFactory;
 import framework.party.Customer;
 
-import java.time.LocalDate;
 
-public class CreditCardAccountFactory implements IAccountFactory {
-    private CreditCardAccountFactory() {}
-    private static CreditCardAccountFactory accountFactory = null;
-
-    public static CreditCardAccountFactory getInstance() {
-        if(accountFactory == null) {
-            accountFactory = new CreditCardAccountFactory();
-        }
-
-        return accountFactory;
+public abstract class CreditCardAccountFactory extends AccountFactory {
+    public CreditCardAccountFactory() throws Exception {
+        super();
     }
 
-    public IAccount createAccount(Customer customer, String accountNumber, String expDate, String type) {
+    //private static CreditCardAccountFactory accountFactory = null;
+
+    //public static CreditCardAccountFactory getInstance() {
+        //if(accountFactory == null) {
+            //accountFactory = new CreditCardAccountFactory();
+        //}
+
+        //return accountFactory;
+    //}
+
+    public static IAccount createAccount(Customer customer, String accountNumber, String expDate, String type) {
         IAccount account = null;
         if (type.equals("gold"))
             account = new Gold(customer, accountNumber, expDate);
@@ -33,8 +34,7 @@ public class CreditCardAccountFactory implements IAccountFactory {
         return account;
     }
 
-    @Override
-    public IAccount createAccount(Customer customer, String accNumber, String type) {
+    public static IAccount createAccount(Customer customer, String accNumber, String type) {
         IAccount account = null;
         if (type.equals("gold"))
             account = new Gold(customer, accNumber);

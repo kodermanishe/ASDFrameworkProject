@@ -36,7 +36,7 @@ public class Account implements IAccount {
 
 	@Override
     public double getCurrentBalance() {
-		return entries.stream().mapToDouble(e -> e.amount()).sum();
+		return entries.stream().mapToDouble(e -> e.getAmount()).sum();
     }
 
 	@Override
@@ -59,7 +59,7 @@ public class Account implements IAccount {
 
 	@Override
 	public double getLastAmountTransaction() {
-		return entries.get(entries.size()-1).amount();
+		return entries.get(entries.size()-1).getAmount();
 	}
 
 	@Override
