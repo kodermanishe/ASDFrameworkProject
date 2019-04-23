@@ -1,20 +1,17 @@
 package ccard;
 
-public class Gold  extends AbstractAccount{
-    private  double MI=6;
-    private  double MP=10;
+public class bronze extends AbstractAccount{
+
+    private  double MI=10;
+    private  double MP=14;
 
     public double getNewMonthlyBalance(){
         return  super.getLastMonthBalance() - super.getTotalMonthlyCredits()  + super.getLastMonthCharges() * MI;
     }
 
     public double getMonthlyAmountDue(){
-         return MP * getNewMonthlyBalance();
+        return MP * getNewMonthlyBalance();
     }
 
 
-
 }
-
-
-
