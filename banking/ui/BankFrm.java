@@ -1,15 +1,12 @@
-package bank.ui;
+package banking.ui;
 
-import bank.facade_DB.BankFacade;
-import framework.Finco;
-import framework.account.Account;
+import banking.facade_DB.BankFacade;
 import framework.account.IAccount;
 import framework.party.Customer;
 import framework.ui.MainScreen;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.Objects;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
@@ -186,7 +183,7 @@ public class BankFrm extends MainScreen
 	@Override
 	protected void JButtonPerAC_actionPerformed(ActionEvent event)
 	{
-		JDialog_AddCompAcc pac = new JDialog_AddCompAcc(myframe, facade);
+		JDialog_AddPAcc pac = new JDialog_AddPAcc(myframe, facade);
 		pac.setBounds(450, 20, 300, 330);
 		pac.setVisible(true);
 
@@ -230,7 +227,7 @@ public class BankFrm extends MainScreen
 			rowdata[3] = customer.getStreet();
 			rowdata[4] = customer.getCity();
 			rowdata[5] = customer.getState();
-			rowdata[6] = customer.getClass().getSimpleName();
+			rowdata[6] = customer.getType();
 			rowdata[7] = bankAccount.getCurrentBalance();
 			model.addRow(rowdata);
 		}

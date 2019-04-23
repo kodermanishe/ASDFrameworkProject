@@ -1,24 +1,24 @@
-package bank;
+package creditcard;
 
-import bank.ui.BankFrm;
+import creditcard.ui.CardFrm;
 import framework.Finco;
 
-public class Bank extends Finco {
-    public Bank () {
+public class CreditCard extends Finco {
+    public CreditCard () {
         super();
     }
 
     public void run() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                main = new BankFrm();
+                main = new CardFrm();
                 main.setVisible(true);
             }
         });
     }
 
     public static void main(String[] args) {
-        Bank creditCard = new Bank();
+        CreditCard creditCard = new CreditCard();
         creditCard.run();
     }
 }

@@ -1,6 +1,6 @@
-package bank.ui;
+package banking.ui;
 
-import bank.facade_DB.BankFacade;
+import banking.facade_DB.BankFacade;
 import framework.account.IAccount;
 import framework.account.entry.IEntry;
 import framework.party.Customer;

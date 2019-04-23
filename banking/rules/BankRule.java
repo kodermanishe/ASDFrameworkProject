@@ -1,4 +1,4 @@
-package bank.rules;
+package banking.rules;
 
 import framework.account.IAccount;
 import framework.party.CustomerType;

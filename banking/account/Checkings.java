@@ -1,6 +1,6 @@
-package bank.account;
+package banking.account;
 
-import bank.rules.BankRule;
+import banking.rules.BankRule;
 import framework.party.Customer;
 
 public class Checkings extends AbstractAccount {

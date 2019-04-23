@@ -30,6 +30,11 @@ public class Account implements IAccount {
 	}
 
 	@Override
+	public double getInterest() {
+		return interest;
+	}
+
+	@Override
     public double getCurrentBalance() {
 		return entries.stream().mapToDouble(e -> e.amount()).sum();
     }

@@ -1,6 +1,6 @@
-package bank.ui;
+package banking.ui;
 
-import bank.facade_DB.BankFacade;
+import banking.facade_DB.BankFacade;
 import framework.party.Customer;
 
 import javax.swing.*;

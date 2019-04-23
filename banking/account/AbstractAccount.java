@@ -1,6 +1,5 @@
-package bank.account;
+package banking.account;
 
-import bank.rules.BankRule;
 import framework.account.Account;
 import framework.party.Customer;
 

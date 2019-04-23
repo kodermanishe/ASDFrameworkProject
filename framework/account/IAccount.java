@@ -16,4 +16,5 @@ public interface IAccount {
 	double getLastAmountTransaction();
 	List<IEntry> getEntries();
 	String getType();
+	double getInterest();
 }

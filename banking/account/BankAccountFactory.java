@@ -1,4 +1,4 @@
-package bank.account;
+package banking.account;
 
 import framework.account.IAccount;
 import framework.account.IAccountFactory;
