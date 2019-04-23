@@ -13,7 +13,7 @@ public class BankFacade extends Facade {
     public IAccount createAccount(Customer customer, String number, String type){
         IAccount account = DB.getAccount(customer, number);
         if (Objects.isNull(account)){
-            account = AccountFactory.getInstance().createAccount(customer, number, type);
+            account = BankAccountFactory.getInstance().createAccount(customer, number, type);
         }
         return account;
     }
