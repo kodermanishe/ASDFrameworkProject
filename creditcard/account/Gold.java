@@ -6,15 +6,16 @@ import java.time.LocalDate;
 
 public class Gold extends AbstractAccount {
 
-    private double interestRate = 0.06;
     private double mP = 0.10;
 
     public Gold(Customer party, String accountNumber, String date) {
         super(party, accountNumber, date);
+        interest = 0.06;
     }
 
     public Gold(Customer party, String accountNumber) {
         super(party, accountNumber);
+        interest = 0.06;
     }
 
     @Override

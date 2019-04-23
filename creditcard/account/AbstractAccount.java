@@ -27,26 +27,26 @@ public abstract class AbstractAccount extends Account {
     public double getLastMonthBalance(){
         LocalDate d = LocalDate.now().minusMonths(1);
         LocalDate end = d.withDayOfMonth(d.lengthOfMonth());
-        return getEntries().stream().filter(e -> e.date().isBefore(end))
-                .mapToDouble(e -> e.amount()).sum();
+        return getEntries().stream().filter(e -> e.getDate().isBefore(end))
+                .mapToDouble(e -> e.getAmount()).sum();
     }
 
     public double getTotalCredits(){
         LocalDate d = LocalDate.now();
         LocalDate st = d.withDayOfMonth(1);
         LocalDate end = d.withDayOfMonth(d.lengthOfMonth());
-        return getEntries().stream().filter(e -> e.name().equals("deposit")
-                && e.date().isAfter(st) && e.date().isBefore(end))
-                .mapToDouble(e -> e.amount()).sum();
+        return getEntries().stream().filter(e -> e.getName().equals("deposit")
+                && e.getDate().isAfter(st) && e.getDate().isBefore(end))
+                .mapToDouble(e -> e.getAmount()).sum();
     }
 
     public double getCharges(){
         LocalDate d = LocalDate.now();
         LocalDate st = d.withDayOfMonth(1);
         LocalDate end = d.withDayOfMonth(d.lengthOfMonth());
-        return getEntries().stream().filter(e -> e.name().equals("withdraw")
-                && e.date().isAfter(st) && e.date().isBefore(end))
-                .mapToDouble(e -> e.amount()).sum()*(-1);
+        return getEntries().stream().filter(e -> e.getName().equals("withdraw")
+                && e.getDate().isAfter(st) && e.getDate().isBefore(end))
+                .mapToDouble(e -> e.getAmount()).sum()*(-1);
     }
 
     public double getNewMonthlyBalance(){

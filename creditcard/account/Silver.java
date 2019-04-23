@@ -11,10 +11,12 @@ public class Silver extends AbstractAccount {
 
     public Silver(Customer party, String accountNumber, String date) {
         super(party, accountNumber, date);
+        interest = 0.08;
     }
 
     public Silver(Customer party, String accountNumber) {
         super(party, accountNumber);
+        interest = 0.08;
     }
 
     @Override

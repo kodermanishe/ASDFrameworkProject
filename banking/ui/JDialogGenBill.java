@@ -44,12 +44,12 @@ public class JDialogGenBill extends JDialog
 				IAccount ccAccount = account;
 
 				for(IEntry entry: ccAccount.getEntries()) {
-					if(entry.date().getMonthValue()<LocalDate.now().getMonthValue()) {
-						previousBalance += entry.amount();
+					if(entry.getDate().getMonthValue()<LocalDate.now().getMonthValue()) {
+						previousBalance += entry.getAmount();
 					}
-					if(entry.date().getMonthValue()==LocalDate.now().getMonthValue()) {
-						if(entry.name().equals("withdraw")) totalCharges += -1*entry.amount();
-						else if(entry.name().equals("deposit")) totalCredits += entry.amount();
+					if(entry.getDate().getMonthValue()==LocalDate.now().getMonthValue()) {
+						if(entry.getName().equals("withdraw")) totalCharges += -1*entry.getAmount();
+						else if(entry.getName().equals("deposit")) totalCredits += entry.getAmount();
 					}
 				}
 

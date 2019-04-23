@@ -12,7 +12,7 @@ import java.util.List;
 public class Account implements IAccount {
 	private String accNumber;
 	private List<IEntry> entries;
-	private double interest = 0.05;
+	protected double interest = 0.05;
 	protected Customer customer;
 
 	public Account() {

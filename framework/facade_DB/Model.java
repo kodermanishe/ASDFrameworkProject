@@ -54,7 +54,6 @@ public class Model {
         return customers;
     }
 
-    public void getReport(){}
 
     public List<IAccount> getAccounts(){
         return customers.stream().flatMap(c -> c.getAccounts().stream()).collect(Collectors.toList());

@@ -5,11 +5,9 @@ import framework.party.Customer;
 
 public abstract class AbstractAccount extends Account {
 
-    protected double interest;
-
-    public AbstractAccount(Customer customer, String accountNumber, double interest) {
+    public AbstractAccount(Customer customer, String accountNumber, double inter) {
         super(customer, accountNumber);
-        this.interest = interest;
+        interest = inter;
     }
 
     public AbstractAccount(Customer party, String accountNumber) {
