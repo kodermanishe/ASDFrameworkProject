@@ -35,6 +35,7 @@ public class Account implements IAccount {
 		notifyCustomer();
 	}
 
+	@Override
 	public void notifyCustomer() {
 		if (new NotifyRule().test(this)) {
 			customer.SendEmailToCustomer();
@@ -44,6 +45,11 @@ public class Account implements IAccount {
 	@Override
 	public Customer getCustomer() {
 		return customer;
+	}
+
+	@Override
+	public double getLastAmountTransaction() {
+		return entries.get(entries.size()-1).amount();
 	}
 
 	@Override

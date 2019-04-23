@@ -18,7 +18,8 @@ public abstract class AbstractAccount extends Account {
 
     public abstract String getType();
 
-    public void sendNotification() {
+    @Override
+    public void notifyCustomer() {
         if(new BankRule().test(this)) customer.SendEmailToCustomer();
     }
 }

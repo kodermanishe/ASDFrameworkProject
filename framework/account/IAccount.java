@@ -13,4 +13,5 @@ public interface IAccount {
 	void addInterest();
 	String getAccNumber();
 	Customer getCustomer();
+	double getLastAmountTransaction();
 }
