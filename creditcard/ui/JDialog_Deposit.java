@@ -1,6 +1,6 @@
 package creditcard.ui;
 
-import creditcard.facade_DB.CreditCardFacade;
+import creditcard.facade_DB.CreditCardController;
 import framework.account.IAccount;
 
 public class JDialog_Deposit extends javax.swing.JDialog
@@ -8,9 +8,9 @@ public class JDialog_Deposit extends javax.swing.JDialog
 	private String name;
 	private IAccount account;
 	private CardFrm cardFrm;
-	private CreditCardFacade facade;
+	private CreditCardController facade;
 
-	public JDialog_Deposit(CardFrm cardFrm, String accountN, CreditCardFacade facade)
+	public JDialog_Deposit(CardFrm cardFrm, String accountN, CreditCardController facade)
 	{
 		this.account = facade.getAccount(accountN);
 		this.facade = facade;

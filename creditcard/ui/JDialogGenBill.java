@@ -1,7 +1,7 @@
 package creditcard.ui;
 
 import creditcard.account.AbstractAccount;
-import creditcard.facade_DB.CreditCardFacade;
+import creditcard.facade_DB.CreditCardController;
 import framework.account.IAccount;
 import framework.party.Customer;
 
@@ -9,9 +9,9 @@ import framework.party.Customer;
 public class JDialogGenBill extends javax.swing.JDialog
 {
 	private CardFrm cardFrm;
-	private CreditCardFacade facade;
+	private CreditCardController facade;
 
-	public JDialogGenBill(CardFrm cardFrm, CreditCardFacade facade)
+	public JDialogGenBill(CardFrm cardFrm, CreditCardController facade)
 	{
 		this.cardFrm = cardFrm;
 		this.facade = facade;

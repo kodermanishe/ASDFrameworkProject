@@ -1,6 +1,6 @@
 package banking.ui;
 
-import banking.facade_DB.BankFacade;
+import banking.facade_DB.BankController;
 import framework.account.IAccount;
 
 public class JDialog_Deposit extends javax.swing.JDialog
@@ -9,9 +9,9 @@ public class JDialog_Deposit extends javax.swing.JDialog
 
     private BankFrm parentframe;
     private String accnr;
-    private BankFacade facade;
+    private BankController facade;
     
-	public JDialog_Deposit(BankFrm parent, String aaccnr, BankFacade facade)
+	public JDialog_Deposit(BankFrm parent, String aaccnr, BankController facade)
 	{
 		super(parent);
 		parentframe=parent;

@@ -1,6 +1,6 @@
 package banking.ui;
 
-import banking.facade_DB.BankFacade;
+import banking.facade_DB.BankController;
 import framework.account.IAccount;
 import framework.party.Customer;
 import framework.ui.MainScreen;
@@ -23,7 +23,7 @@ public class BankFrm extends MainScreen
 	private JScrollPane JScrollPane1;
 	BankFrm myframe;
 	private Object rowdata[];
-	private BankFacade facade;
+	private BankController facade;
 
 	JPanel JPanel1 = new JPanel();
 	JButton JButton_NewCCAccount = new JButton();
@@ -36,7 +36,7 @@ public class BankFrm extends MainScreen
 	public BankFrm()
 	{
 		myframe = this;
-		this.facade = new BankFacade();
+		this.facade = new BankController();
 		setTitle(getTitle());
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0,0));

@@ -1,6 +1,6 @@
 package framework.ui;
 
-import framework.facade_DB.Facade;
+import framework.facade_DB.Controller;
 import framework.account.IAccount;
 
 import javax.swing.*;
@@ -9,13 +9,13 @@ import java.awt.*;
 public class JDialog_Deposit extends JDialog
 {
 
-    private Facade facade;
+    private Controller controller;
     private IAccount account;
     
-	public JDialog_Deposit(MainScreen main, IAccount account, Facade facade)
+	public JDialog_Deposit(MainScreen main, IAccount account, Controller controller)
 	{
 		super(main);
-		this.facade = facade;
+		this.controller = controller;
 		this.account = account;
 
 		//{{ INIT_CONTROLS 
@@ -82,7 +82,7 @@ public class JDialog_Deposit extends JDialog
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		double money = Double.parseDouble(JTextField_Deposit.getText());
-		facade.deposit(account, money);
+		controller.deposit(account, money);
 		dispose();
 	}
 

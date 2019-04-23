@@ -4,16 +4,16 @@ import java.util.Objects;
 
 import javax.swing.*;
 
-import creditcard.facade_DB.CreditCardFacade;
+import creditcard.facade_DB.CreditCardController;
 import framework.party.Customer;
 
 public class JDialog_AddCCAccount extends javax.swing.JDialog
 {
 	String clientName,street,city, state,accountType,amountDeposit,expdate,ccnumber,email;
 	CardFrm cardFrm;
-	private CreditCardFacade facade;
+	private CreditCardController facade;
 
-	public JDialog_AddCCAccount(CardFrm cardFrm, CreditCardFacade facade)
+	public JDialog_AddCCAccount(CardFrm cardFrm, CreditCardController facade)
 	{
 		this.cardFrm = cardFrm;
 		this.facade = facade;

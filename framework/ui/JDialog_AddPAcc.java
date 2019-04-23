@@ -2,29 +2,24 @@ package framework.ui; /**
 		A basic implementation of the JDialog class.
 **/
 
-import framework.account.AccountFactory;
-import framework.account.Account;
-import framework.facade_DB.Facade;
-import framework.party.AbstractCustomer;
+import framework.facade_DB.Controller;
 import framework.party.Customer;
-import framework.party.CustomerFactory;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Objects;
 
 public class JDialog_AddPAcc extends JDialog
 {
     private MainScreen main;
-    Facade facade;
+    Controller controller;
     
-	public JDialog_AddPAcc(MainScreen main, Facade facade)
+	public JDialog_AddPAcc(MainScreen main, Controller controller)
 	{
 		this.main = main;
-		this.facade = facade;
+		this.controller = controller;
 
 		//{{ INIT_CONTROLS 
 		setTitle("Add personal account");
@@ -146,11 +141,11 @@ public class JDialog_AddPAcc extends JDialog
 		String email = JTextField_EM.getText();
 		LocalDate birthDay = LocalDate.parse(JTextField_BD.getText(), formatter);
 
-		Customer company = facade.createPerson(name, street, city, state, zip, email, birthDay, accountNumber);
+		Customer company = controller.createPerson(name, street, city, state, zip, email, birthDay, accountNumber);
 		if (Objects.isNull(company)){
 			JOptionPane.showMessageDialog(this, "Cannot create account, account number is exists","Error!", JOptionPane.ERROR_MESSAGE);
 		}else{
-			facade.createAccount(company, accountNumber, "");
+			controller.createAccount(company, accountNumber, "");
 			main.updateTable();
 		}
 		dispose();

@@ -11,11 +11,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public class Facade {
+public class Controller {
 
-    protected FincoDB DB;
-    public Facade() {
-        DB = FincoDB.getInstance();
+    protected Model DB;
+    public Controller() {
+        DB = Model.getInstance();
     }
 
     public Customer createCustomer(String name, String street, String city, String state, int zip, String email, String n){
@@ -60,10 +60,6 @@ public class Facade {
 
     public void addInterest(){
         DB.updateInterest();
-    }
-
-    public String report(){
-        return "";
     }
 
     public List<Customer> getCustomers(){

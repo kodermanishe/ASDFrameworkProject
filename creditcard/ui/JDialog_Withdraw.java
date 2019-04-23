@@ -1,6 +1,6 @@
 package creditcard.ui;
 
-import creditcard.facade_DB.CreditCardFacade;
+import creditcard.facade_DB.CreditCardController;
 import framework.account.IAccount;
 
 public class JDialog_Withdraw extends javax.swing.JDialog
@@ -9,9 +9,9 @@ public class JDialog_Withdraw extends javax.swing.JDialog
 	private String name;
 	private IAccount account;
 	CardFrm cardFrm;
-	private CreditCardFacade facade;
+	private CreditCardController facade;
 
-	public JDialog_Withdraw(CardFrm cardFrm, String account, CreditCardFacade facade)
+	public JDialog_Withdraw(CardFrm cardFrm, String account, CreditCardController facade)
 	{
 		this.account = facade.getAccount(account);
 		name = this.account.getCustomer().getName();

@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.table.DefaultTableModel;
 
 import creditcard.account.AbstractAccount;
-import creditcard.facade_DB.CreditCardFacade;
+import creditcard.facade_DB.CreditCardController;
 import framework.account.IAccount;
 import framework.party.Customer;
 
@@ -21,7 +21,7 @@ public class CardFrm extends javax.swing.JFrame
 	private JScrollPane JScrollPane1;
 	CardFrm thisframe;
 	private Object rowdata[];
-	private CreditCardFacade facade;
+	private CreditCardController facade;
 
 	public DefaultTableModel getModel() {
 		return model;
@@ -30,7 +30,7 @@ public class CardFrm extends javax.swing.JFrame
 	public CardFrm()
 	{
 		thisframe=this;
-		this.facade = new CreditCardFacade();
+		this.facade = new CreditCardController();
 
 		setTitle("Credit-card processing Application.");
 		setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);

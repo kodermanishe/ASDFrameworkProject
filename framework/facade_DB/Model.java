@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class FincoDB {
+public class Model {
 
     List<Customer> customers;
-    private static FincoDB instance;
+    private static Model instance;
 
-    private FincoDB() {
+    private Model() {
         customers = new ArrayList<>();
     }
 
-    public static FincoDB getInstance() {
+    public static Model getInstance() {
         if(instance == null) {
-            instance = new FincoDB();
+            instance = new Model();
         }
 
         return instance;

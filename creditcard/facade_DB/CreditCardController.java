@@ -2,13 +2,12 @@ package creditcard.facade_DB;
 
 import creditcard.account.CreditCardAccountFactory;
 import framework.account.IAccount;
-import framework.facade_DB.Facade;
+import framework.facade_DB.Controller;
 import framework.party.Customer;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
-public class CreditCardFacade extends Facade {
+public class CreditCardController extends Controller {
 
     @Override
     public IAccount createAccount(Customer customer, String number, String type){

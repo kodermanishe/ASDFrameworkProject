@@ -2,12 +2,12 @@ package banking.facade_DB;
 
 import banking.account.BankAccountFactory;
 import framework.account.IAccount;
-import framework.facade_DB.Facade;
+import framework.facade_DB.Controller;
 import framework.party.Customer;
 
 import java.util.Objects;
 
-public class BankFacade extends Facade {
+public class BankController extends Controller {
 
     @Override
     public IAccount createAccount(Customer customer, String number, String type){

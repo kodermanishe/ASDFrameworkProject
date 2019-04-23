@@ -1,6 +1,6 @@
 package banking.ui;
 
-import banking.facade_DB.BankFacade;
+import banking.facade_DB.BankController;
 import framework.party.Customer;
 
 import javax.swing.*;
@@ -9,9 +9,9 @@ import java.util.Objects;
 public class JDialog_AddCompAcc extends javax.swing.JDialog
 {
     private BankFrm parentframe;
-	private BankFacade facade;
+	private BankController facade;
     
-	public JDialog_AddCompAcc(BankFrm parent, BankFacade facade)
+	public JDialog_AddCompAcc(BankFrm parent, BankController facade)
 	{
 		super(parent);
 		parentframe = parent;

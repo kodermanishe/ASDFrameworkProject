@@ -1,6 +1,6 @@
 package framework.ui;
 
-import framework.facade_DB.Facade;
+import framework.facade_DB.Controller;
 import framework.party.Customer;
 
 import javax.swing.*;
@@ -9,12 +9,12 @@ import java.util.Objects;
 
 public class JDialog_AddCompAcc extends JDialog
 {
-    private Facade facade;
+    private Controller controller;
     private MainScreen main;
 
-	public JDialog_AddCompAcc(MainScreen main, Facade facade)
+	public JDialog_AddCompAcc(MainScreen main, Controller controller)
 	{
-		this.facade = facade;
+		this.controller = controller;
 		this.main = main;
 		//{{ INIT_CONTROLS 
 		setTitle("Add compamy account");
@@ -128,12 +128,12 @@ public class JDialog_AddCompAcc extends JDialog
 		int zip = Integer.parseInt(JTextField_ZIP.getText());
 		String email = JTextField_EM.getText();
 
-		Customer company = facade.createCustomer(name, street, city, state, zip, email, accountNumber);
+		Customer company = controller.createCustomer(name, street, city, state, zip, email, accountNumber);
 		if (Objects.isNull(company)){
 			JOptionPane.showMessageDialog(this, "Cannot create account, account number is exists","Error!", JOptionPane.ERROR_MESSAGE);
 		}
 		else{
-			facade.createAccount(company, accountNumber, "");
+			controller.createAccount(company, accountNumber, "");
 			main.updateTable();}
 		dispose();
 

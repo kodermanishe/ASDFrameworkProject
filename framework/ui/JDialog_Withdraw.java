@@ -1,6 +1,6 @@
 package framework.ui;
 
-import framework.facade_DB.Facade;
+import framework.facade_DB.Controller;
 import framework.account.IAccount;
 
 import javax.swing.*;
@@ -10,14 +10,14 @@ import java.awt.*;
 public class JDialog_Withdraw extends JDialog
 {
 
-	private Facade facade;
+	private Controller controller;
 	private MainScreen main;
 	private IAccount account;
 
-	public JDialog_Withdraw(MainScreen main, IAccount account, Facade facade)
+	public JDialog_Withdraw(MainScreen main, IAccount account, Controller controller)
 	{
 		super(main);
-		this.facade = facade;
+		this.controller = controller;
 		this.account = account;
 		this.main = main;
 		
@@ -90,7 +90,7 @@ public class JDialog_Withdraw extends JDialog
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		double money = Double.parseDouble(JTextField_AMT.getText());
-		facade.withdraw(account, money);
+		controller.withdraw(account, money);
 		dispose();
 	}
 

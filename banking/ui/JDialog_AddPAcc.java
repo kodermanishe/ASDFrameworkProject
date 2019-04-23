@@ -3,7 +3,7 @@
 **/
 package banking.ui;
 
-import banking.facade_DB.BankFacade;
+import banking.facade_DB.BankController;
 import framework.party.Customer;
 
 import javax.swing.*;
@@ -14,9 +14,9 @@ import java.util.Objects;
 public class JDialog_AddPAcc extends javax.swing.JDialog
 {
     private BankFrm parentframe;
-    private BankFacade facade;
+    private BankController facade;
     
-	public JDialog_AddPAcc(BankFrm parent, BankFacade facade)
+	public JDialog_AddPAcc(BankFrm parent, BankController facade)
 	{
 		super(parent);
 		parentframe=parent;
