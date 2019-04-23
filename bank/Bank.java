@@ -1,5 +1,6 @@
-package bank.ui;
+package bank;
 
+import bank.ui.BankFrm;
 import framework.Finco;
 
 public class Bank extends Finco {

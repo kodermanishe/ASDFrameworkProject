@@ -1,10 +1,12 @@
 package bank.ui;
 
+import bank.facade_DB.BankFacade;
 import framework.Finco;
 import framework.account.IAccount;
 import framework.party.Customer;
 
 import java.awt.*;
+import java.util.Objects;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
@@ -58,6 +60,7 @@ public class BankFrm extends Finco
         JTable1 = new JTable(model);
         model.addColumn("AccountNr");
         model.addColumn("Name");
+		model.addColumn("Type");
         model.addColumn("City");
         model.addColumn("P/C");
         model.addColumn("Ch/S");
@@ -256,11 +259,7 @@ public class BankFrm extends Finco
 		    dep.show();
 
 		    // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 5);
-            long currentamount = Long.parseLong(samount.toString());
-		    long newamount=currentamount+deposit;
-		    model.setValueAt(newamount,selection, 5);
+			this.updateTable();
 
 		}
 
@@ -280,14 +279,7 @@ public class BankFrm extends Finco
 		    wd.show();
 
 		    // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 5);
-            long currentamount = Long.parseLong(samount.toString());
-		    long newamount=currentamount-deposit;
-		    model.setValueAt(newamount,selection, 5);
-		    if (newamount <0){
-		       JOptionPane.showMessageDialog(JButton_Withdraw, " Account "+accnr+" : balance is negative: $"+newamount+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
-		    }
+			this.updateTable();
 		}
 
 
@@ -301,10 +293,11 @@ public class BankFrm extends Finco
 			rowdata = new Object[model.getColumnCount()];
 			rowdata[0] = account.getAccNumber();
 			rowdata[1] = customer.getName();
-			rowdata[2] = customer.getCity();
-			rowdata[3] = customer.getState();
-			rowdata[4] = customer.getClass().getSimpleName();
-			rowdata[5] = account.getCurrentBalance();
+			rowdata[2] = account.getType();
+			rowdata[3] = customer.getCity();
+			rowdata[4] = customer.getState();
+			rowdata[5] = customer.getClass().getSimpleName();
+			rowdata[6] = account.getCurrentBalance();
 			model.addRow(rowdata);
 		}
 	}
@@ -312,6 +305,8 @@ public class BankFrm extends Finco
 
 	void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event)
 	{
+		facade.addInterest();
+		this.updateTable();
 		  JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
 
 	}

@@ -82,8 +82,8 @@ public class JDialog_Deposit extends JDialog
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		double money = Double.parseDouble(JTextField_Deposit.getText());
-        facade.deposit(account, money);
-        dispose();
+		facade.deposit(account, money);
+		dispose();
 	}
 
 	void JButtonCalcel_actionPerformed(java.awt.event.ActionEvent event)

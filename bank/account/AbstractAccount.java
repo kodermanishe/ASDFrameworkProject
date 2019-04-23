@@ -1,11 +1,12 @@
-package bank.ui;
+package bank.account;
 
+import bank.rules.BankRule;
 import framework.account.Account;
 import framework.party.Customer;
 
 public abstract class AbstractAccount extends Account {
 
-    private double interest;
+    protected double interest;
 
     public AbstractAccount(Customer customer, String accountNumber, double interest) {
         super(customer, accountNumber);
@@ -16,10 +17,5 @@ public abstract class AbstractAccount extends Account {
         super(party, accountNumber);
     }
 
-    public abstract String getType();
 
-    @Override
-    public void notifyCustomer() {
-        if(new BankRule().test(this)) customer.SendEmailToCustomer();
-    }
 }

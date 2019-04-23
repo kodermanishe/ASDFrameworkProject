@@ -1,4 +1,4 @@
-package bank.ui;
+package bank.rules;
 
 import framework.account.IAccount;
 import framework.party.CustomerType;
@@ -25,7 +25,7 @@ public class BankRule implements Rule {
             @Override
             public boolean test(IAccount account) {
                 double lastAmount = account.getLastAmountTransaction();
-                if (lastAmount > 500 && lastAmount < 0)
+                if (lastAmount > 500 || lastAmount < 0)
                     return true;
                 else
                     return false;
@@ -40,7 +40,7 @@ public class BankRule implements Rule {
             if(predicate.test(account))
                 return true;
         }
-        else if (account.getCustomer().getType() == CustomerType.COMPANY)
+        else if (account.getCustomer().getType() == CustomerType.PERSON)
             for(Predicate<IAccount> predicate: rulesP) {
                 if(predicate.test(account))
                     return true;

@@ -1,6 +1,6 @@
-package bank.ui;
+package bank.facade_DB;
 
-import framework.account.AccountFactory;
+import bank.account.BankAccountFactory;
 import framework.account.IAccount;
 import framework.facade_DB.Facade;
 import framework.party.Customer;

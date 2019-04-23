@@ -1,5 +1,6 @@
 package bank.ui;
 
+import bank.facade_DB.BankFacade;
 import framework.party.Customer;
 
 public class JDialog_AddCompAcc extends javax.swing.JDialog
@@ -145,7 +146,8 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
 		String email = JTextField_EM.getText();
 
 		Customer company = facade.createCustomer(name, street, city, state, zip, email);
-		facade.createAccount(company, accountNumber, JRadioButton_Chk.isSelected());
+		facade.createAccount(company, accountNumber,
+				JRadioButton_Chk.isSelected()?"checkings" : "savings");
 		parentframe.updateTable();
 		dispose();
 			 

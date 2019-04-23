@@ -25,6 +25,11 @@ public class Account implements IAccount {
 	}
 
 	@Override
+	public String getType() {
+		return "";
+	}
+
+	@Override
     public double getCurrentBalance() {
 		return entries.stream().mapToDouble(e -> e.amount()).sum();
     }
