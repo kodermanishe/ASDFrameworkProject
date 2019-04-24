@@ -1,12 +1,13 @@
 package banking.account;
 
 import banking.rules.BankRule;
+import framework.account.Account;
 import framework.party.Customer;
 
-public class Savings extends AbstractAccount {
+public class Savings extends Account {
     public Savings(Customer customer, String accNumber) {
         super(customer, accNumber);
-        interest = 0.7;
+        super.interest = 0.7;
     }
 
     @Override

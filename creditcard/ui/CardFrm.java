@@ -4,8 +4,8 @@ import java.awt.*;
 
 import javax.swing.table.DefaultTableModel;
 
-import creditcard.account.AbstractAccount;
 import creditcard.facade_DB.CreditCardController;
+import framework.account.Account;
 import framework.account.IAccount;
 import framework.party.Customer;
 
@@ -174,7 +174,7 @@ public class CardFrm extends javax.swing.JFrame
 			Customer customer = account.getCustomer();
 			rowdata[0] = customer.getName();
 			rowdata[1] = account.getAccNumber();
-			rowdata[2] = ((AbstractAccount)account).getExpDate();
+			rowdata[2] = ((Account)account).getExpDate();
 			rowdata[3] = account.getType();
 			rowdata[4] = customer.getType();
 			rowdata[5] = account.getCurrentBalance();

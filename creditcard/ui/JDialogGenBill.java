@@ -1,7 +1,7 @@
 package creditcard.ui;
 
-import creditcard.account.AbstractAccount;
 import creditcard.facade_DB.CreditCardController;
+import framework.account.Account;
 import framework.account.IAccount;
 import framework.party.Customer;
 
@@ -38,7 +38,7 @@ public class JDialogGenBill extends javax.swing.JDialog
 		String billstring = "";
 		for(Customer party: facade.getCustomers()) {
 			for(IAccount account: party.getAccounts()) {
-				AbstractAccount ccAccount = (AbstractAccount) account;
+				Account ccAccount = (Account) account;
 
 				billstring += "Name= "+party.getName()+"\r\n";
 				billstring += "CC number = "+account.getAccNumber()+"\r\n";

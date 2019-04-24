@@ -14,6 +14,7 @@ public class Account implements IAccount {
 	private List<IEntry> entries;
 	protected double interest = 0.05;
 	protected Customer customer;
+	protected String expDate;
 
 	public Account() {
 	}
@@ -22,6 +23,56 @@ public class Account implements IAccount {
 		this.accNumber = accNumber;
 		this.customer = party;
 		this.entries = new ArrayList<>();
+	}
+
+	@Override
+	public double getLastMonthBalance(){
+		LocalDate d = LocalDate.now().minusMonths(1);
+		LocalDate end = d.withDayOfMonth(d.lengthOfMonth());
+		return getEntries().stream().filter(e -> e.getDate().isBefore(end))
+				.mapToDouble(e -> e.getAmount()).sum();
+	}
+
+	@Override
+	public double getTotalCredits(){
+		LocalDate d = LocalDate.now();
+		LocalDate st = d.withDayOfMonth(1);
+		LocalDate end = d.withDayOfMonth(d.lengthOfMonth());
+		return getEntries().stream().filter(e -> e.getName().equals("deposit")
+				&& e.getDate().isAfter(st) && e.getDate().isBefore(end))
+				.mapToDouble(e -> e.getAmount()).sum();
+	}
+
+	@Override
+	public double getCharges(){
+		LocalDate d = LocalDate.now();
+		LocalDate st = d.withDayOfMonth(1);
+		LocalDate end = d.withDayOfMonth(d.lengthOfMonth());
+		return getEntries().stream().filter(e -> e.getName().equals("withdraw")
+				&& e.getDate().isAfter(st) && e.getDate().isBefore(end))
+				.mapToDouble(e -> e.getAmount()).sum()*(-1);
+	}
+
+	@Override
+	public double getNewMonthlyBalance(){
+		return getLastMonthBalance() - getTotalCredits() + getCharges()
+				+ getInterest() * (getLastMonthBalance() - getTotalCredits());
+	}
+
+	@Override
+	public double getMonthlyAmountDue(){
+		return getMP() * getNewMonthlyBalance();
+	}
+
+	@Override
+	public double getMP() {
+		// Default for Bronze
+		return 0.14;
+	}
+
+	@Override
+	public String getExpDate() {
+		return expDate;
 	}
 
 	@Override

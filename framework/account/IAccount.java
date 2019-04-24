@@ -17,4 +17,12 @@ public interface IAccount {
 	List<IEntry> getEntries();
 	String getType();
 	double getInterest();
+
+	double getLastMonthBalance();
+	double getTotalCredits();
+	double getCharges();
+	double getNewMonthlyBalance();
+	double getMonthlyAmountDue();
+	double getMP();
+	String getExpDate();
 }
